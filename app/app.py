@@ -3,18 +3,18 @@
 
 import streamlit as st
 import os
-import sys
 import yaml
+
 from dotenv import load_dotenv
-load_dotenv(dotenv_path=".env")
+load_dotenv(".env")
+
 with open(file="app/app_config.yaml",
           mode="r",
           encoding="utf-8") as f:
     config = yaml.safe_load(f)
 column_cfg = config["column_config"]
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from db.db_handling import DatabaseHandler
+from db_handler import DatabaseHandler
 
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
